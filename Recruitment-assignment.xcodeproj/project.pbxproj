@@ -21,6 +21,11 @@
 		6FADB21E2B7E5E7000DCB57D /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB21D2B7E5E7000DCB57D /* Episode.swift */; };
 		6FADB2202B7E5F4000DCB57D /* Episode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB21F2B7E5F4000DCB57D /* Episode+Extension.swift */; };
 		6FADB2222B7E5FBD00DCB57D /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2212B7E5FBD00DCB57D /* HTTPMethod.swift */; };
+		6FADB2262B7E65F100DCB57D /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2252B7E65F100DCB57D /* Endpoint.swift */; };
+		6FADB2292B7E686E00DCB57D /* CharacterEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2282B7E686E00DCB57D /* CharacterEndpoint.swift */; };
+		6FADB22B2B7E6EF600DCB57D /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB22A2B7E6EF600DCB57D /* Endpoints.swift */; };
+		6FADB22E2B7E710000DCB57D /* LocationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB22D2B7E710000DCB57D /* LocationEndpoint.swift */; };
+		6FADB2302B7E710800DCB57D /* EpisodeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB22F2B7E710800DCB57D /* EpisodeEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +43,11 @@
 		6FADB21D2B7E5E7000DCB57D /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		6FADB21F2B7E5F4000DCB57D /* Episode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Episode+Extension.swift"; sourceTree = "<group>"; };
 		6FADB2212B7E5FBD00DCB57D /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		6FADB2252B7E65F100DCB57D /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		6FADB2282B7E686E00DCB57D /* CharacterEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEndpoint.swift; sourceTree = "<group>"; };
+		6FADB22A2B7E6EF600DCB57D /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		6FADB22D2B7E710000DCB57D /* LocationEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationEndpoint.swift; sourceTree = "<group>"; };
+		6FADB22F2B7E710800DCB57D /* EpisodeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +132,7 @@
 		6FADB2032B7E56FA00DCB57D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				6FADB2272B7E685900DCB57D /* Endpoints */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -163,6 +174,7 @@
 		6FADB2122B7E5A1A00DCB57D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				6FADB2252B7E65F100DCB57D /* Endpoint.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -182,6 +194,17 @@
 				6FADB2212B7E5FBD00DCB57D /* HTTPMethod.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		6FADB2272B7E685900DCB57D /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				6FADB22A2B7E6EF600DCB57D /* Endpoints.swift */,
+				6FADB2282B7E686E00DCB57D /* CharacterEndpoint.swift */,
+				6FADB22D2B7E710000DCB57D /* LocationEndpoint.swift */,
+				6FADB22F2B7E710800DCB57D /* EpisodeEndpoint.swift */,
+			);
+			path = Endpoints;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,13 +286,18 @@
 				6FADB1F42B7E56BD00DCB57D /* ContentView.swift in Sources */,
 				6FADB20C2B7E598A00DCB57D /* EpisodeDetailsView.swift in Sources */,
 				6FADB21C2B7E5E0600DCB57D /* Location.swift in Sources */,
+				6FADB22E2B7E710000DCB57D /* LocationEndpoint.swift in Sources */,
 				6FADB2222B7E5FBD00DCB57D /* HTTPMethod.swift in Sources */,
 				6FADB20F2B7E599F00DCB57D /* CharactersListView.swift in Sources */,
 				6FADB2162B7E5ADE00DCB57D /* Character.swift in Sources */,
 				6FADB2112B7E59AE00DCB57D /* CharactersDetailsView.swift in Sources */,
 				6FADB1F22B7E56BD00DCB57D /* Recruitment_assignmentApp.swift in Sources */,
 				6FADB21E2B7E5E7000DCB57D /* Episode.swift in Sources */,
+				6FADB2302B7E710800DCB57D /* EpisodeEndpoint.swift in Sources */,
+				6FADB2292B7E686E00DCB57D /* CharacterEndpoint.swift in Sources */,
+				6FADB22B2B7E6EF600DCB57D /* Endpoints.swift in Sources */,
 				6FADB2192B7E5B8100DCB57D /* Character+Enum.swift in Sources */,
+				6FADB2262B7E65F100DCB57D /* Endpoint.swift in Sources */,
 				6FADB2202B7E5F4000DCB57D /* Episode+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
