@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct Location: Identifiable {
+struct Location: Identifiable, Hashable, Decodable {
     let id: Int
     let name: String
     let type: String
     let dimension: String
+    let characters: [Character.ID]
 }

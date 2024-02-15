@@ -7,36 +7,48 @@
 
 import Foundation
 
-extension Endpoints {
+extension API.Endpoints {
     enum LocationEndpoint {
         case all
-        case specific(location: Location)
-        case multiple(locations: [Location])
+        case specific(id: Location.ID)
+        case search(query: Query, phrase: String)
     }
 }
 
-extension Endpoints.LocationEndpoint: Endpoint {
+extension API.Endpoints.LocationEndpoint {
+    enum Query: String {
+        case name
+        case type
+        case dimension
+    }
+}
+
+extension API.Endpoints.LocationEndpoint: Endpoint {
     var method: HTTPMethod {
         switch self {
         case .all:      HTTPMethod.get
         case .specific: HTTPMethod.get
-        case .multiple: HTTPMethod.get
+        case .search:   HTTPMethod.get
         }
     }
     
-    var queries: [String : String]? { return nil }
-    var headers: [String : String]  { Endpoints.headers }
+    var headers: [String : String]  { API.Endpoints.headers }
+    var queries: [String : String]? {
+        switch self {
+        case let .search(query, phrase): [query.rawValue: phrase]
+        default: nil
+        }
+    }
     
-    var schema: String  { Endpoints.schema }
-    var port: Int       { Endpoints.port }
-    var host: String    { Endpoints.host }
-    var version: String { Endpoints.version}
+    var schema: String  { API.Endpoints.schema }
+    var port: Int       { API.Endpoints.port }
+    var host: String    { API.Endpoints.host }
+    var version: String { API.Endpoints.version}
     
     var path: String    {
         switch self {
-        case .all:                      "location"
-        case let .specific(location):   "location/\(location.id)"
-        case let .multiple(location):   "location/\(location.first?.id)" //TODO: Extract ids from objeect and interpolate them as a single string
+        case .all, .search:     "location"
+        case let .specific(id): "location/\(id)"
         }
     }
 }

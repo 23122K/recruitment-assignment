@@ -8,13 +8,13 @@
 import Foundation
 
 extension Character {
-    enum Status: String {
+    enum Status: String, Decodable {
         case alive = "Alive"
         case dead = "Dead"
         case unknown = "unknown"
     }
     
-    enum Gender: String {
+    enum Gender: String, Decodable {
         case feamle = "Female"
         case male = "Male"
         case genderless = "Genderless"

@@ -7,9 +7,11 @@
 
 import Foundation
 
-struct Episode: Identifiable {
+struct Episode: Identifiable, Hashable, Decodable {
     let id: Int
     let name: String
     let aired: String
-    let code: String
+    let number: Int
+    let season: Int
+    let characters: [Episode.ID]
 }

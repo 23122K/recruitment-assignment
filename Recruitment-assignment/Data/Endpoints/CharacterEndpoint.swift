@@ -7,36 +7,50 @@
 
 import Foundation
 
-extension Endpoints {
+extension API.Endpoints {
     enum CharacterEndpoint {
         case all
-        case specific(character: Character)
-        case multiple(characters: [Character])
+        case specific(id: Character.ID)
+        case search(query: Query, phrase: String)
     }
 }
 
-extension Endpoints.CharacterEndpoint: Endpoint {
+extension API.Endpoints.CharacterEndpoint {
+    enum Query: String {
+        case name
+        case status
+        case species
+        case type
+        case gender
+    }
+}
+
+extension API.Endpoints.CharacterEndpoint: Endpoint {
     var method: HTTPMethod {
         switch self {
         case .all:      HTTPMethod.get
         case .specific: HTTPMethod.get
-        case .multiple: HTTPMethod.get
+        case .search:   HTTPMethod.get
         }
     }
     
-    var queries: [String : String]? { return nil }
-    var headers: [String : String]  { Endpoints.headers }
+    var headers: [String : String]  { API.Endpoints.headers }
+    var queries: [String : String]? {
+        switch self {
+        case let .search(query, phrase): [query.rawValue:phrase]
+        default: nil
+        }
+    }
     
-    var schema: String  { Endpoints.schema }
-    var port: Int       { Endpoints.port }
-    var host: String    { Endpoints.host }
-    var version: String { Endpoints.version}
+    var schema: String  { API.Endpoints.schema }
+    var port: Int       { API.Endpoints.port }
+    var host: String    { API.Endpoints.host }
+    var version: String { API.Endpoints.version}
     
     var path: String    {
         switch self {
-        case .all:                      "character"
-        case let .specific(character):  "character/\(character.id)"
-        case let .multiple(characters): "character/\(characters.first?.id)" //TODO: Extract ids from objeect and interpolate them as a single string
+        case .all, .search:     "character"
+        case let .specific(id): "character/\(id)"
         }
     }
 }
