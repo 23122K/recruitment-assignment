@@ -65,6 +65,7 @@
 		6FADB2912B7FCCF500DCB57D /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2902B7FCCF500DCB57D /* SearchBar.swift */; };
 		6FADB2942B7FDEB800DCB57D /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2932B7FDEB800DCB57D /* WelcomeView.swift */; };
 		6FADB2972B7FE94400DCB57D /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2962B7FE94400DCB57D /* FavoriteView.swift */; };
+		6FADB29A2B7FF23C00DCB57D /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 6FADB2992B7FF23C00DCB57D /* Shimmer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FADB29A2B7FF23C00DCB57D /* Shimmer in Frameworks */,
 				6FADB25B2B7EDC5000DCB57D /* Factory in Frameworks */,
 				6FADB2562B7EDC4400DCB57D /* SwiftUINavigation in Frameworks */,
 				6FADB2582B7EDC4400DCB57D /* SwiftUINavigationCore in Frameworks */,
@@ -406,6 +408,7 @@
 				6FADB2552B7EDC4400DCB57D /* SwiftUINavigation */,
 				6FADB2572B7EDC4400DCB57D /* SwiftUINavigationCore */,
 				6FADB25A2B7EDC5000DCB57D /* Factory */,
+				6FADB2992B7FF23C00DCB57D /* Shimmer */,
 			);
 			productName = "Recruitment-assignment";
 			productReference = 6FADB1EE2B7E56BD00DCB57D /* Recruitment-assignment.app */;
@@ -438,6 +441,7 @@
 			packageReferences = (
 				6FADB2542B7EDC4400DCB57D /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
 				6FADB2592B7EDC5000DCB57D /* XCRemoteSwiftPackageReference "Factory" */,
+				6FADB2982B7FF23C00DCB57D /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 			);
 			productRefGroup = 6FADB1EF2B7E56BD00DCB57D /* Products */;
 			projectDirPath = "";
@@ -741,6 +745,14 @@
 				minimumVersion = 2.3.1;
 			};
 		};
+		6FADB2982B7FF23C00DCB57D /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -758,6 +770,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6FADB2592B7EDC5000DCB57D /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
+		};
+		6FADB2992B7FF23C00DCB57D /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FADB2982B7FF23C00DCB57D /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

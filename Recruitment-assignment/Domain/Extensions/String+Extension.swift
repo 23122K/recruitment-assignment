@@ -31,6 +31,15 @@ extension String {
     }
 }
 
+extension String{
+    static func random(in range: Range<Int>) -> String {
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let length = Int.random(in: range.lowerBound...range.upperBound)
+        let characters = (0...length).map { _ in letters.randomElement()! }
+        return String(characters)
+    }
+}
+
 extension String {
     func asInt() throws -> Int {
         guard let result = Int(self) else {

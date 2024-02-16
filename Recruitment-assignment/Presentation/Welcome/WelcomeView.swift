@@ -18,7 +18,7 @@ struct WelcomeView: View {
                     .resizable()
                     .scaledToFit()
                     .onTapGesture { vm.initateDestination(to: .characters) }
-                Text("Simply, tap the portal to see the list of all characters")
+                Text("Simply, tap the portal to see the list of all characters.")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundStyle(Color.font)
@@ -41,7 +41,6 @@ class WelcomeModel: ObservableObject {
     @Published var destination: Destination?
     
     func initateDestination(to destination: Destination) {
-        print(destination)
         self.destination = destination
     }
     

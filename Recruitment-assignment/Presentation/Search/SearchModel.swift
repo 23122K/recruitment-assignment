@@ -9,31 +9,26 @@ import Factory
 import Foundation
 import SwiftUI
 import SwiftUINavigation
+import Combine
 
 @MainActor
 class SearchModel: ObservableObject {
-    @Published var characters: Loadable<[Character]> = .none
-    @Published var locations: Loadable<[Location]> = .none
-    @Published var episodes: Loadable<[Episode]> = .none
-    @Published var destination: Destination? = .none
+    @Published var characters: Loadable<[Character]>
+    @Published var locations: Loadable<[Location]>
+    @Published var episodes: Loadable<[Episode]>
+    @Published var destination: Destination?
     
     @Published var filters: [Filter]
-    @Published var filter: Filter = .character(.name)
-    @Published var phrase: String = "" {
-        didSet {
-            switch filter {
-            case let .character(query): initiateFilterCharacters(with: query)
-            case let .location(query):  initiateFilterLocations(with: query)
-            case let .episode(query):   initiateFilterEpisodes(with: query)
-            }
-        }
-    }
+    @Published var filter: Filter
+    @Published var phrase: String
     
     @FocusState var focus: Field?
     
     @Injected(\.characterRemoteRepository) private var characterRemoteRepository
     @Injected(\.locationRemoteRepository) private var locationRemoteRepository
     @Injected(\.episodeRemoteRepository) private var episodeRemoteRepository
+    
+    private var cancellables: Set<AnyCancellable> = Set()
     
     enum Field: Hashable {
         case search
@@ -58,7 +53,17 @@ class SearchModel: ObservableObject {
         self.focus = field
     }
     
-    private func initiateFilterCharacters(with query: API.Endpoints.CharacterEndpoint.Query) {
+    private func initiateSearch(for phrase: String) {
+        if phrase.isEmpty { return }
+        
+        switch filter {
+        case let .character(query): initiateFilterCharacters(phrase: phrase, with: query)
+        case let .location(query):  initiateFilterLocations(phrase: phrase, with: query)
+        case let .episode(query):   initiateFilterEpisodes(phrase: phrase, with: query)
+        }
+    }
+    
+    private func initiateFilterCharacters(phrase: String, with query: API.Endpoints.CharacterEndpoint.Query) {
         Task(priority: .userInitiated) {
             do {
                 self.characters = .loading
@@ -68,7 +73,7 @@ class SearchModel: ObservableObject {
         }
     }
     
-    private func initiateFilterLocations(with query: API.Endpoints.LocationEndpoint.Query) {
+    private func initiateFilterLocations(phrase: String, with query: API.Endpoints.LocationEndpoint.Query) {
         Task(priority: .userInitiated) {
             do {
                 self.locations = .loading
@@ -78,7 +83,7 @@ class SearchModel: ObservableObject {
         }
     }
     
-    private func initiateFilterEpisodes(with query: API.Endpoints.EpisodeEndpoint.Query) {
+    private func initiateFilterEpisodes(phrase: String, with query: API.Endpoints.EpisodeEndpoint.Query) {
         Task(priority: .userInitiated) {
             do {
                 self.episodes = .loading
@@ -105,6 +110,15 @@ class SearchModel: ObservableObject {
         self.filter = filter
         self.phrase = phrase
         self.focus = focus
+        
+        $phrase
+            .removeDuplicates()
+            .debounce(for: .milliseconds(333), scheduler: RunLoop.main)
+            .sink { [weak self] phrase in
+                self?.phrase = phrase
+                self?.initiateSearch(for: phrase)
+            }
+            .store(in: &cancellables)
     }
 }
 

@@ -23,7 +23,8 @@ class EpisodeListModel: ObservableObject {
     }
     
     func initateGetAllEpisodesWithGivenCharacterAction() {
-        guard let character else { return } //TODO: /
+        guard let character else { return }
+        
         Task(priority: .userInitiated) {
             do {
                 self.episodes = .loading

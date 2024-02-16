@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct EpisodeRowView: View {
     let image: Image?

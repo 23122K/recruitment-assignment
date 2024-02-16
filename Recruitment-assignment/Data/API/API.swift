@@ -37,3 +37,13 @@ extension API.Response {
         let next: String?
     }
 }
+
+extension API {
+    struct Error: Hashable, Decodable {
+        var description: String
+        
+        enum CodingKeys: String, CodingKey {
+            case description = "error"
+        }
+    }
+}

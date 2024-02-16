@@ -7,28 +7,55 @@
 
 import SwiftUI
 
-struct AsyncView<T: Any, Content: View>: View {
+struct AsyncView<T: Any, Content: View, Placeholder: View>: View {
     @Binding var state: Loadable<T>
+    var placeholder: Placeholder
     var content: (T) -> Content
     
     var body: some View {
         switch state {
         case .none: Color.clear
-        case .loading: Color.red
-        case let .failed(error):
-            ZStack {
-                Image("rickrorr")
-                    .resizable()
-                    .scaledToFit()
-                Text(error.localizedDescription)
-            }
-            
+        case .loading: placeholder
+        case let .failed(error): rickrorr(description: error.localizedDescription)
         case let .loaded(data): content(data)
         }
     }
     
-    init(state: Binding<Loadable<T>>, @ViewBuilder _ content: @escaping (T) -> Content) {
+    @ViewBuilder
+    private func rickrorr(description: String) -> some View {
+        let textGradient = Gradient(colors: [Color.clear, Color.primary.opacity(0.4)])
+        let imageGradient = Gradient(colors: [Color.clear, Color.primary])
+        
+        VStack {
+            Spacer()
+            
+            VStack {
+                Text("Oopsie...")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundStyle(Color.font)
+                    .overlay(LinearGradient(gradient: textGradient, startPoint: .bottomLeading, endPoint: .topTrailing))
+                
+                Text(description)
+                    .font(.headline)
+                    .fontWeight(.medium)
+                    .foregroundStyle(Color.font)
+                    .overlay(LinearGradient(gradient: textGradient, startPoint: .bottomLeading, endPoint: .topTrailing))
+            }
+            
+            Spacer()
+            
+            Image("rickrorr")
+                .resizable()
+                .scaledToFit()
+                .overlay(LinearGradient(gradient: imageGradient, startPoint: .top, endPoint: .bottom))
+                .padding(.top)
+        }
+    }
+    
+    init(state: Binding<Loadable<T>>, placeholder: Placeholder, @ViewBuilder _ content: @escaping (T) -> Content) {
         self._state = state
+        self.placeholder = placeholder
         self.content = content
     }
 }

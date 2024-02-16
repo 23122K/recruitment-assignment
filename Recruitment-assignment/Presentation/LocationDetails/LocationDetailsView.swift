@@ -13,7 +13,7 @@ struct LocationDetailsView: View {
     
     var body: some View {
         VStack {
-            AsyncView(state: $vm.location) { location in
+            AsyncView(state: $vm.location, placeholder: LocationListView.Placeholder()) { location in
                 ScrollView {
                     GenericRowView(location.name, category: "Location name", image: Image(systemName: "movieclapper"))
                     GenericRowView(location.dimension, category: "Dimension", image: Image(systemName: "bubbles.and.sparkles"))

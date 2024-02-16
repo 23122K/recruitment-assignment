@@ -25,11 +25,11 @@ class CharactersListModel: ObservableObject {
         self.destination = destination
     }
     
-    func initiateDiscardAllFetchedCharactersAction() {
+    func initiateDiscardAllFetchedCharacters() {
         self.characters = .none
     }
     
-    func initateGetAllCharactersAction() {
+    func initateGetAllCharacters() {
         Task(priority: .userInitiated) {
             self.characters = .loading
             do {
@@ -49,13 +49,21 @@ class CharactersListModel: ObservableObject {
         }
     }
     
-    init(character ids: [Character.ID]? = .none, characters: Loadable<[Character]> = .none, destination: Destination? = .none) {
-        self.characters = characters
+    init(character ids: [Character.ID]? = .none, loadable characters: Optional<Loadable<[Character]>> = nil, destination: Destination? = .none) {
         self.destination = destination
         
         switch ids {
-        case let .some(ids): initiateGetCharacters(with: ids)
-        case .none: initateGetAllCharactersAction()
+        case let .some(ids):
+            self.characters = .none
+            self.initiateGetCharacters(with: ids)
+        case .none:
+            switch characters {
+            case nil:
+                self.characters = .none
+                self.initateGetAllCharacters()
+            case let .some(characters):
+                self.characters = characters
+            }
         }
     }
 }
