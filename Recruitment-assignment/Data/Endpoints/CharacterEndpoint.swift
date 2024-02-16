@@ -12,6 +12,7 @@ extension API.Endpoints {
         case all
         case specific(id: Character.ID)
         case search(query: Query, phrase: String)
+        case multiple(ids: [Episode.ID])
     }
 }
 
@@ -31,6 +32,7 @@ extension API.Endpoints.CharacterEndpoint: Endpoint {
         case .all:      HTTPMethod.get
         case .specific: HTTPMethod.get
         case .search:   HTTPMethod.get
+        case .multiple: HTTPMethod.get
         }
     }
     
@@ -49,8 +51,9 @@ extension API.Endpoints.CharacterEndpoint: Endpoint {
     
     var path: String    {
         switch self {
-        case .all, .search:     "character"
-        case let .specific(id): "character/\(id)"
+        case .all, .search:         "character"
+        case let .specific(id):     "character/\(id)"
+        case let .multiple(ids):    "character/\(ids)"
         }
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct Recruitment_assignmentApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+           CharactersListView()
         }
     }
 }

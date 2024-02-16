@@ -15,9 +15,14 @@ class CharacterRemoteRepository: RemoteRepository {
         return try await data(for: endpoint.request).decode(to: API.Response.self)
     }
     
-    func getCharacter(with id: Character.ID)  async throws -> Character {
+    func getCharacter(with id: Character.ID) async throws -> Character {
         let endpoint = API.Endpoints.CharacterEndpoint.specific(id: id)
         return try await data(for: endpoint.request).decode(to: Character.self)
+    }
+    
+    func getCharacters(with ids: [Character.ID]) async throws -> [Character] {
+        let endpoint = API.Endpoints.CharacterEndpoint.multiple(ids: ids)
+        return try await data(for: endpoint.request).decode(to: [Character].self)
     }
     
     func searchCharacters(for query: API.Endpoints.CharacterEndpoint.Query, with phrase: String) async throws -> API.Response<Character> {

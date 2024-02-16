@@ -11,6 +11,7 @@ extension API.Endpoints {
     enum EpisodeEndpoint {
         case all
         case specific(id: Episode.ID)
+        case multiple(ids: [Episode.ID])
         case search(query: Query, phrase: String)
     }
 }
@@ -28,6 +29,7 @@ extension API.Endpoints.EpisodeEndpoint: Endpoint {
         case .all:      HTTPMethod.get
         case .specific: HTTPMethod.get
         case .search:   HTTPMethod.get
+        case .multiple: HTTPMethod.get
         }
     }
     
@@ -46,8 +48,9 @@ extension API.Endpoints.EpisodeEndpoint: Endpoint {
     
     var path: String    {
         switch self {
-        case .all, .search:     "episode"
-        case let .specific(id): "episode/\(id)"
+        case .all, .search:         "episode"
+        case let .specific(id):     "episode/\(id)"
+        case let .multiple(ids):    "episode/\(ids)"
         }
     }
 }

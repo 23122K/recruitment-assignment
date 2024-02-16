@@ -14,5 +14,6 @@ struct Character: Identifiable, Hashable, Decodable {
     let gender: Character.Gender
     let origin: Character.Location
     let location: Character.Location
+    let episodes: [Episode.ID]
     let image: URL
 }

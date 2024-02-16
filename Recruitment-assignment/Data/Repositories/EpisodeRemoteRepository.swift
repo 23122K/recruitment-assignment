@@ -15,9 +15,14 @@ class EpisodeRemoteRepository: RemoteRepository {
         return try await data(for: endpoint.request).decode(to: API.Response.self)
     }
     
-    func getEpisode(with id: Episode.ID)  async throws -> Episode {
+    func getEpisode(with id: Episode.ID) async throws -> Episode {
         let endpoint = API.Endpoints.EpisodeEndpoint.specific(id: id)
         return try await data(for: endpoint.request).decode(to: Episode.self)
+    }
+    
+    func getEpisodes(with ids: [Episode.ID]) async throws -> [Episode] {
+        let endpoint = API.Endpoints.EpisodeEndpoint.multiple(ids: ids)
+        return try await data(for: endpoint.request).decode(to: [Episode].self)
     }
     
     func searchEpisodes(for query: API.Endpoints.EpisodeEndpoint.Query, with phrase: String) async throws -> API.Response<Episode> {
