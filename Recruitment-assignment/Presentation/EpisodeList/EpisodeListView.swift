@@ -8,8 +8,8 @@
 import SwiftUI
 import SwiftUINavigation
 
-struct CharacterEpisodeListView: View {
-    @ObservedObject var vm: CharacterEpisodeListModel
+struct EpisodeListView: View {
+    @ObservedObject var vm: EpisodeListModel
     
     var body: some View {
         AsyncView(state: $vm.episodes) { episodes in
@@ -23,12 +23,12 @@ struct CharacterEpisodeListView: View {
         }
         .navigationDestination(unwrapping: $vm.destination.details) { $episode in
             EpisodeDetailsView(episode)
-                .title(vm.character.name)
+                .title(vm.character?.name ?? "Search")
         }
         
     }
     
-    init(_ character: Character) {
-        self._vm = ObservedObject(initialValue: CharacterEpisodeListModel(character: character))
+    init(_ character: Character? = nil, loadable episodes: Loadable<[Episode]>? = nil) {
+        self._vm = ObservedObject(initialValue: EpisodeListModel(character: character, episodes: episodes))
     }
 }

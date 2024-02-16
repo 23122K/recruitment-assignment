@@ -18,31 +18,37 @@ struct CharacterRowView: View {
                 switch phase {
                 case .empty, .failure:
                     Color.primary
-                        .frame(width: 75, height: 75)
+                        .frame(width: 65, height: 65)
                         .onAppear { value.toggle() }
                         .animation(.easeOut, value: value)
                 case let .success(image):
                     image
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 75, height: 75)
+                        .frame(width: 65, height: 65)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .overlay(LinearGradient(gradient: gradient, startPoint: .leading, endPoint: .trailing))
                         .onAppear { value.toggle() }
                         .animation(.easeIn, value: value)
                 }
             }
-            .padding(.horizontal)
             
-            Text(verbatim: character.name)
-                .foregroundStyle(Color.font)
+            VStack(alignment: .listRowSeparatorLeading) {
+                Text(verbatim: character.name)
+                    .foregroundStyle(Color.font)
+                    .bold()
+                
+                Text("Character name")
+                    .foregroundStyle(Color.font)
+                    .font(.caption)
+            }
+            .padding(.horizontal)
                 
             Spacer()
         }
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.secondary)
-                .padding(.horizontal)
         }
     }
 }

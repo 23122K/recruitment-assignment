@@ -12,32 +12,29 @@ struct CharactersListView: View {
     @ObservedObject var vm: CharactersListModel
     
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                Button("Get") { vm.getAllCharactersButtonTapped() }
-                AsyncView(state: $vm.characters) { characters in
-                    ScrollView {
-                        ForEach(characters) { character in
-                            CharacterRowView(character: character)
-                                .onTapGesture { vm.initiateDestination(to: .details(character)) }
-                        }
+        VStack(spacing: 0) {
+            AsyncView(state: $vm.characters) { characters in
+                ScrollView {
+                    ForEach(characters) { character in
+                        CharacterRowView(character: character)
+                            .onTapGesture { vm.initiateDestination(to: .details(character)) }
                     }
-                    .scrollIndicators(.never)
                 }
+                .scrollIndicators(.never)
             }
-            .navigationDestination(unwrapping: $vm.destination.details) { $character in
-                CharactersDetailsView(character: character)
-                    .title("Characters")
-            }
+        }
+        .navigationDestination(unwrapping: $vm.destination.details) { $character in
+            CharactersDetailsView(character: character)
+                .title("Characters")
         }
     }
     
-    init(characters ids: [Character.ID]? = .none) {
+    init(character ids: [Character.ID]? = .none, loadable characters: Loadable<[Character]> = .none) {
         var vm: CharactersListModel
         
         switch ids {
-        case let .some(ids): vm = CharactersListModel(character: ids)
-        case .none: vm = CharactersListModel()
+        case let .some(ids): vm = CharactersListModel(character: .some(ids), characters: characters)
+        case .none: vm = CharactersListModel(character: .none, characters: characters)
         }
         
         self._vm = ObservedObject(wrappedValue: vm)

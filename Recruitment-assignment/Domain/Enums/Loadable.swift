@@ -13,3 +13,12 @@ enum Loadable<Value> {
     case failed(Error)
     case loaded(Value)
 }
+
+extension Loadable {
+    var isLoaded: Bool {
+        switch self {
+        case .loaded: true
+        default: false
+        }
+    }
+}

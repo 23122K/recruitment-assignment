@@ -16,11 +16,12 @@ struct CharactersDetailsView: View {
             TabView {
                 CharacterInfoView(character)
                     .padding(.horizontal, 5)
-                CharacterEpisodeListView(character)
+                EpisodeListView(character)
                     .padding(.horizontal, 5)
             }
             .ignoresSafeArea(.all)
             .tabViewStyle(.page(indexDisplayMode: .always))
+            .toolbar(.hidden, for: .tabBar)
         }
         .background(Color.primary)
         .ignoresSafeArea(.all)

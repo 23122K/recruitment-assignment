@@ -11,8 +11,8 @@ import SwiftUINavigation
 
 @MainActor
 class CharactersListModel: ObservableObject {
-    @Published var characters: Loadable<[Character]> = .none
-    @Published var destination: Destination? = .none
+    @Published var characters: Loadable<[Character]>
+    @Published var destination: Destination?
     
     @Injected(\.characterRemoteRepository) private var characterRemoteRepository
     
@@ -25,7 +25,11 @@ class CharactersListModel: ObservableObject {
         self.destination = destination
     }
     
-    func getAllCharactersButtonTapped() {
+    func initiateDiscardAllFetchedCharactersAction() {
+        self.characters = .none
+    }
+    
+    func initateGetAllCharactersAction() {
         Task(priority: .userInitiated) {
             self.characters = .loading
             do {
@@ -35,7 +39,7 @@ class CharactersListModel: ObservableObject {
         }
     }
     
-    func getAllCharactersWithGivenIds(characters ids: [Character.ID]) {
+    func initiateGetCharacters(with ids: [Character.ID]) {
         Task(priority: .userInitiated) {
             self.characters = .loading
             do {
@@ -45,10 +49,13 @@ class CharactersListModel: ObservableObject {
         }
     }
     
-    init(character ids: [Character.ID]? = .none) {
+    init(character ids: [Character.ID]? = .none, characters: Loadable<[Character]> = .none, destination: Destination? = .none) {
+        self.characters = characters
+        self.destination = destination
+        
         switch ids {
-        case let .some(ids): getAllCharactersWithGivenIds(characters: ids)
-        case .none: break
+        case let .some(ids): initiateGetCharacters(with: ids)
+        case .none: initateGetAllCharactersAction()
         }
     }
 }

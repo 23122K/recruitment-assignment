@@ -15,7 +15,14 @@ struct AsyncView<T: Any, Content: View>: View {
         switch state {
         case .none: Color.clear
         case .loading: Color.red
-        case let .failed(error): Text(error.localizedDescription)
+        case let .failed(error):
+            ZStack {
+                Image("rickrorr")
+                    .resizable()
+                    .scaledToFit()
+                Text(error.localizedDescription)
+            }
+            
         case let .loaded(data): content(data)
         }
     }

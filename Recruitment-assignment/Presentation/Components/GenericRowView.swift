@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EpisodeInfoRowView: View {
+struct GenericRowView: View {
     let image: Image?
     let name: String
     let category: String
@@ -46,7 +46,6 @@ struct EpisodeInfoRowView: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.secondary)
         }
-        .padding(.horizontal, 5)
     }
     
     init(_ name: String, category: String, image: Image? = .none, clickable: Bool = false) {

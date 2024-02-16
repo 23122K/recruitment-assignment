@@ -38,6 +38,12 @@ struct EpisodeRowView: View {
             .padding(.leading)
                 
             Spacer()
+            
+            Image(systemName: "chevron.right")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 25, height: 25)
+                .foregroundStyle(Color.font)
         }
         .padding()
         .background {

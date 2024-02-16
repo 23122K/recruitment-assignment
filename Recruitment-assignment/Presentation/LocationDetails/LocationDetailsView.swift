@@ -15,23 +15,23 @@ struct LocationDetailsView: View {
         VStack {
             AsyncView(state: $vm.location) { location in
                 ScrollView {
-                    EpisodeInfoRowView(location.name, category: "Location name", image: Image(systemName: "movieclapper"))
-                    EpisodeInfoRowView(location.dimension, category: "Dimension", image: Image(systemName: "bubbles.and.sparkles"))
-                    if !location.type.isEmpty { EpisodeInfoRowView(location.type, category: "Type", image: Image(systemName: "atom")) }
-                    EpisodeInfoRowView(location.characters.count.description, category: "Characters count", image: Image(systemName: "person.fill"), clickable: true)
+                    GenericRowView(location.name, category: "Location name", image: Image(systemName: "movieclapper"))
+                    GenericRowView(location.dimension, category: "Dimension", image: Image(systemName: "bubbles.and.sparkles"))
+                    if !location.type.isEmpty { GenericRowView(location.type, category: "Type", image: Image(systemName: "atom")) }
+                    GenericRowView(location.characters.count.description, category: "Characters count", image: Image(systemName: "person.fill"), clickable: true)
                         .onTapGesture { vm.initiadeDestination(to: .characters(location.characters)) }
                 }
                 .scrollIndicators(.never)
             }
         }
         .navigationDestination(unwrapping: $vm.destination.characters) { $characters in
-            CharactersListView(characters: characters)
+            CharactersListView(character: characters)
                 .title(vm.location.value?.name ?? "") //TODO: Fix
         }
         
     }
     
-    init(_ location: Character.Location) {
-        self._vm = ObservedObject(initialValue: LocationDetailsModel(location: location))
+    init(location id: Location.ID) {
+        self._vm = ObservedObject(initialValue: LocationDetailsModel(location: id))
     }
 }

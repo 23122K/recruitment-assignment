@@ -43,3 +43,10 @@ extension Character.Gender: CustomStringConvertible {
     }
 }
 
+extension Character.Status: Identifiable, CaseIterable {
+    var id: Self { self }
+}
+
+extension Character.Gender: Identifiable, CaseIterable {
+    var id: Self { self }
+}

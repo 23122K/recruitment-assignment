@@ -10,8 +10,6 @@ import SwiftUI
 @main
 struct Recruitment_assignmentApp: App {
     var body: some Scene {
-        WindowGroup {
-           CharactersListView()
-        }
+        WindowGroup { ContentView() }
     }
 }

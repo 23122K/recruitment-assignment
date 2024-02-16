@@ -23,8 +23,7 @@ struct CharacterInfoView: View {
             }
             .scrollIndicators(.never)
             .navigationDestination(unwrapping: $vm.destination.details) { $location in
-                LocationDetailsView(location)
-                    .title(vm.character.name)
+                if let id = location.id { LocationDetailsView(location: id).title(vm.character.name) }
             }
         }
     }

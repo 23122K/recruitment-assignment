@@ -14,19 +14,19 @@ struct EpisodeDetailsView: View {
     var body: some View {
         VStack {
             ScrollView {
-                EpisodeInfoRowView(vm.episode.name, category: "Episode title", image: Image(systemName: "movieclapper"))
-                EpisodeInfoRowView(vm.episode.aired, category: "First aired", image: Image(systemName: "antenna.radiowaves.left.and.right"))
+                GenericRowView(vm.episode.name, category: "Episode title", image: Image(systemName: "movieclapper"))
+                GenericRowView(vm.episode.aired, category: "First aired", image: Image(systemName: "antenna.radiowaves.left.and.right"))
                 HStack(spacing: 0) {
-                    EpisodeInfoRowView(vm.episode.number.description, category: "Episode no.", image: Image(systemName: "number"))
-                    EpisodeInfoRowView(vm.episode.season.description, category: "Season", image: Image(systemName: "number"))
+                    GenericRowView(vm.episode.number.description, category: "Episode no.", image: Image(systemName: "number"))
+                    GenericRowView(vm.episode.season.description, category: "Season", image: Image(systemName: "number"))
                 }
-                EpisodeInfoRowView(vm.episode.characters.count.description, category: "Characters count", image: Image(systemName: "person.fill"), clickable: true)
+                GenericRowView(vm.episode.characters.count.description, category: "Characters count", image: Image(systemName: "person.fill"), clickable: true)
                     .onTapGesture { vm.initiadeDestination(to: .characters(vm.episode.characters)) }
             }
             .scrollIndicators(.never)
         }
         .navigationDestination(unwrapping: $vm.destination.characters) { $characters in
-            CharactersListView(characters: characters)
+            CharactersListView(character: characters)
                 .title(vm.episode.name)
         }
         

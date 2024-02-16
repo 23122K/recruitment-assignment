@@ -21,11 +21,11 @@ class LocationDetailsModel: ObservableObject {
         case characters(_ characters: [Character.ID])
     }
     
-    func getLocation(_ location: Character.Location) {
+    func initateGetLocationBy(location id: Location.ID) {
         Task(priority: .userInitiated) {
             do {
                 self.location = .loading
-                let result = try await locationRemoteRepository.getLocation(with: location.id.unsafelyUnwrapped)
+                let result = try await locationRemoteRepository.getLocation(with: id)
                 self.location = .loaded(result)
             } catch { self.location = .failed(error) }
         }
@@ -35,7 +35,7 @@ class LocationDetailsModel: ObservableObject {
         self.destination = destination
     }
     
-    init(location: Character.Location) {
-        getLocation(location)
+    init(location id: Location.ID) {
+        initateGetLocationBy(location: id)
     }
 }
