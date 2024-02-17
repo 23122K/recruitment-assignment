@@ -29,6 +29,7 @@ struct SearchView: View {
                 Spacer()
                 SearchListView(vm)
             }
+            .padding(5)
             .task { await initateSetFocusToSearchBar() }
         }
     }

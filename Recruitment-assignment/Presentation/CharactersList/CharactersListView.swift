@@ -22,6 +22,7 @@ struct CharactersListView: View {
                 }
             }
         }
+        .padding(5)
         .animation(.bouncy, value: vm.characters.isLoaded)
         .navigationDestination(unwrapping: $vm.destination.details) { $character in
             CharactersDetailsView(character: character)

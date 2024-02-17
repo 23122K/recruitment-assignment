@@ -28,6 +28,7 @@ struct CharacterInfoView: View {
                     .disabled(!isClickable(vm.character.location))
                 CharacterInfoRowView(vm.character.gender.description, category: "Gender", image: Image(systemName: "person.fill"))
             }
+            .padding(5)
             .scrollIndicators(.never)
             .navigationDestination(unwrapping: $vm.destination.details) { $location in
                 if let id = location.id { LocationDetailsView(location: id).title(vm.character.name) }

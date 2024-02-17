@@ -18,6 +18,7 @@ struct EpisodeListView: View {
                     .onTapGesture { vm.initateDestination(to: .details(episode)) }
             }
         }
+        .padding(5)
         .animation(.bouncy, value: vm.episodes.isLoaded)
         .navigationDestination(unwrapping: $vm.destination.details) { $episode in
             EpisodeDetailsView(episode)

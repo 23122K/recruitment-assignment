@@ -18,6 +18,7 @@ struct LocationListView: View {
                     .onTapGesture { vm.initateDestination(to: .details(location)) }
             }
         }
+        .padding(5)
         .animation(.bouncy, value: vm.locations.isLoaded)
         .navigationDestination(unwrapping: $vm.destination.details) { $location in LocationDetailsView(location: location.id).title("Locations") }
         
