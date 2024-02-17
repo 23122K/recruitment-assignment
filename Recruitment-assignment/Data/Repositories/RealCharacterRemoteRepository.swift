@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CharacterRemoteRepository: RemoteRepository {
+class RealCharacterRemoteRepository: CharacterRemoteRepository {
     var session: URLSession
     
     func getAll() async throws -> API.Response<Character> {

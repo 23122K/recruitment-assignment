@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LocationRemoteRepository: RemoteRepository {
+class RealLocationRemoteRepository: LocationRemoteRepository {
     var session: URLSession
     
     func getAll() async throws -> API.Response<Location> {

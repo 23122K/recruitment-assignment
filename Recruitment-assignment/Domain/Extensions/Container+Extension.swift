@@ -21,17 +21,17 @@ extension Container {
  
     //MARK: - Repositories
     var characterRemoteRepository: Factory<CharacterRemoteRepository> {
-        self { CharacterRemoteRepository() }
+        self { RealCharacterRemoteRepository() }
             .singleton
     }
     
     var locationRemoteRepository: Factory<LocationRemoteRepository> {
-        self { LocationRemoteRepository() }
+        self { RealLocationRemoteRepository() }
             .singleton
     }
     
     var episodeRemoteRepository: Factory<EpisodeRemoteRepository> {
-        self { EpisodeRemoteRepository() }
+        self { RealEpisodeRemoteRepository() }
             .singleton
     }
 }

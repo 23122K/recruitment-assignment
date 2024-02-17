@@ -16,5 +16,10 @@ protocol UserDefaultsStore {
     func get() -> U
     func add(_: T)
     func delete(_: T)
-    
+}
+
+extension UserDefaultsStore {
+    func isKeyPresentInStore(key: String) -> Bool {
+        UserDefaults.standard.object(forKey: key) != nil
+    }
 }

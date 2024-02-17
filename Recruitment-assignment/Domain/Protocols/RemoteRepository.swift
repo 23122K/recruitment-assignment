@@ -7,7 +7,11 @@
 
 import Foundation
 
-enum RemoteRepositoryError: Error, LocalizedError {
+enum RemoteRepositoryError: Error, LocalizedError, Comparable {
+    static func < (lhs: RemoteRepositoryError, rhs: RemoteRepositoryError) -> Bool {
+        lhs.localizedDescription < rhs.localizedDescription
+    }
+    
     case invalidResponse
     case invalidStatusCode(code: Int, data: Data)
     case invalidRequest(_ description: String)

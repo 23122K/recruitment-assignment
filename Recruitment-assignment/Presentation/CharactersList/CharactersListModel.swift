@@ -20,7 +20,7 @@ class CharactersListModel: ObservableObject {
     @Injected(\.subscrptions) private var subscrptions
     
     @CasePathable
-    enum Destination {
+    enum Destination: Equatable {
         case details(_ character: Character)
     }
     
@@ -43,24 +43,19 @@ class CharactersListModel: ObservableObject {
         self.favorite = favoriteCharacterStore.get()
     }
     
-    func initateGetAllCharacters() {
-        Task(priority: .userInitiated) {
-            self.characters = .loading
-            do {
-                let results = try await characterRemoteRepository.getAll().results
-                self.characters = .loaded(results)
-            } catch { self.characters = .failed(error) }
-        }
+    func initateGetAllCharacters() async {
+        self.characters = .loading
+        do {
+            let results = try await characterRemoteRepository.getAll().results
+            self.characters = .loaded(results)
+        } catch { self.characters = .failed(error) }
     }
     
-    func initiateGetCharacters(with ids: [Character.ID]) {
-        Task(priority: .userInitiated) {
-            self.characters = .loading
-            do {
-                let results = try await characterRemoteRepository.getCharacters(with: ids)
-                self.characters = .loaded(results)
-            } catch { self.characters = .failed(error) }
-        }
+    func initiateGetCharacters(with ids: [Character.ID]) async {
+        do {
+            let results = try await characterRemoteRepository.getCharacters(with: ids)
+            self.characters = .loaded(results)
+        } catch { self.characters = .failed(error) }
     }
     
     init(
@@ -75,12 +70,12 @@ class CharactersListModel: ObservableObject {
         switch ids {
         case let .some(ids):
             self.characters = .none
-            self.initiateGetCharacters(with: ids)
+            Task { await self.initiateGetCharacters(with: ids) }
         case .none:
             switch characters {
             case nil:
                 self.characters = .none
-                self.initateGetAllCharacters()
+                Task { await self.initateGetAllCharacters() }
             case let .some(characters):
                 self.characters = characters
             }
@@ -88,7 +83,7 @@ class CharactersListModel: ObservableObject {
         
         self.favoriteCharacterStore.$didChange
             .receive(on: RunLoop.main)
-            .sink { [weak self] _ in self?.initateGetAllFavoritedCharacters() }
+            .sink { [weak self] _ in Task { self?.initateGetAllFavoritedCharacters() } }
             .store(in: &subscrptions.cancelbag)
     }
 }

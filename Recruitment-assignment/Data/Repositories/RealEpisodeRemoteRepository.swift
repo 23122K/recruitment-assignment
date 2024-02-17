@@ -7,7 +7,7 @@
 
 import Foundation
 
-class EpisodeRemoteRepository: RemoteRepository {
+class RealEpisodeRemoteRepository: EpisodeRemoteRepository {
     var session: URLSession
     
     func getAll() async throws -> API.Response<Episode> {

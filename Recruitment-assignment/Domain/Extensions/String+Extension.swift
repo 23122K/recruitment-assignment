@@ -7,8 +7,9 @@
 
 import Foundation
 
-enum EpisodeInfoError: Error, Comparable {
+enum ParsingError: Error, Comparable {
     case invalidFormat(_ format: String)
+    case couldNotParse(_ stringValue: String, toType: String)
 }
 
 extension String {
@@ -18,7 +19,7 @@ extension String {
         let range = NSRange(location: 0, length: self.utf8.count)
 
         guard let match = regex.firstMatch(in: self, range: range) else {
-            throw EpisodeInfoError.invalidFormat(self)
+            throw ParsingError.invalidFormat(self)
         }
 
         let seasonRange = Range(match.range(at: 1), in: self)!
@@ -43,7 +44,7 @@ extension String{
 extension String {
     func asInt() throws -> Int {
         guard let result = Int(self) else {
-            throw NSError(domain: "\(self) could not be parsed to Int", code: 1)
+            throw ParsingError.couldNotParse(self, toType: String(describing: Int.self))
         }
         
         return result
