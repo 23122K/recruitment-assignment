@@ -16,6 +16,12 @@ struct SearchBar<T: Hashable>: View {
     var onSubmit: () -> Void
     var onCancel: () -> Void
     
+    private func _onCancel() {
+        focused.toggle()
+        text = String()
+        onCancel()
+    }
+    
     var body: some View {
         HStack {
             HStack(spacing: 5){
@@ -39,7 +45,7 @@ struct SearchBar<T: Hashable>: View {
                     .fill(Color.secondary)
             })
             
-            if focused { Button("Cancel") { focused.toggle(); onCancel() }.foregroundStyle(Color.font) }
+            if focused {  Button("Cancel") { _onCancel() }.foregroundStyle(Color.font) }
         }
         .animation(.bouncy, value: focused)
         .padding(.bottom, 2)

@@ -9,7 +9,6 @@ import Factory
 import Foundation
 import SwiftUI
 import SwiftUINavigation
-import Combine
 
 @MainActor
 class SearchModel: ObservableObject {
@@ -22,15 +21,13 @@ class SearchModel: ObservableObject {
     @Published var filter: Filter
     @Published var phrase: String
     
-    @FocusState var focus: Field?
-    
     @Injected(\.characterRemoteRepository) private var characterRemoteRepository
     @Injected(\.locationRemoteRepository) private var locationRemoteRepository
     @Injected(\.episodeRemoteRepository) private var episodeRemoteRepository
-    
-    private var cancellables: Set<AnyCancellable> = Set()
-    
-    enum Field: Hashable {
+    @Injected(\.subscrptions) private var subscrptions
+
+    @CasePathable
+    enum Field {
         case search
     }
     
@@ -47,10 +44,6 @@ class SearchModel: ObservableObject {
     
     func initateUpdateFilters(for filter: Filter) {
         self.filter = filter
-    }
-    
-    func initaiteUpdateFocus(to field: Field) {
-        self.focus = field
     }
     
     private func initiateSearch(for phrase: String) {
@@ -99,8 +92,7 @@ class SearchModel: ObservableObject {
          destination: Destination? = .none,
          filters: [Filter] = [.character(.name), .episode(.name), .location(.name)],
          filter: Filter = .character(.name),
-         phrase: String = String(),
-         focus: Field? = .search
+         phrase: String = String()
     ) {
         self.characters = characters
         self.locations = locations
@@ -109,7 +101,6 @@ class SearchModel: ObservableObject {
         self.filters = filters
         self.filter = filter
         self.phrase = phrase
-        self.focus = focus
         
         $phrase
             .removeDuplicates()
@@ -118,7 +109,7 @@ class SearchModel: ObservableObject {
                 self?.phrase = phrase
                 self?.initiateSearch(for: phrase)
             }
-            .store(in: &cancellables)
+            .store(in: &subscrptions.cancelbag)
     }
 }
 

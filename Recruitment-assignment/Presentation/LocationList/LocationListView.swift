@@ -13,13 +13,10 @@ struct LocationListView: View {
     
     var body: some View {
         AsyncView(state: $vm.locations, placeholder: LocationListView.Placeholder()) { locations in
-            ScrollView {
-                ForEach(locations) { location in
-                    GenericRowView(location.name, category: "Location", image: Image(systemName: "globe.central.south.asia.fill"), clickable: true)
-                        .onTapGesture { vm.initateDestination(to: .details(location)) }
-                }
+            CustomList(locations) { location in
+                GenericRowView(location.name, category: "Location", image: Image(systemName: "globe.central.south.asia.fill"), clickable: true)
+                    .onTapGesture { vm.initateDestination(to: .details(location)) }
             }
-            .scrollIndicators(.never)
         }
         .animation(.bouncy, value: vm.locations.isLoaded)
         .navigationDestination(unwrapping: $vm.destination.details) { $location in LocationDetailsView(location: location.id).title("Locations") }
@@ -27,7 +24,7 @@ struct LocationListView: View {
     }
     
     init(loadable locations: Loadable<[Location]> = .none) {
-        self._vm = ObservedObject(initialValue: LocationListModel(loadable: locations))
+        self._vm = ObservedObject(wrappedValue: LocationListModel(loadable: locations))
     }
 }
 

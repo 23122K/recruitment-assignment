@@ -25,7 +25,7 @@ struct WelcomeView: View {
                     .padding()
                     .overlay(LinearGradient(gradient: gradient, startPoint: .bottomLeading, endPoint: .topTrailing))
             }
-            .navigationDestination(unwrapping: $vm.destination.characters) { $_ in
+            .navigationDestination(unwrapping: $vm.destination.characters) { _ in
                 CharactersListView()
                     .title("Portal")
             }
@@ -35,17 +35,4 @@ struct WelcomeView: View {
 
 extension WelcomeView {
     private var gradient: Gradient { Gradient(colors: [Color.clear, Color.primary.opacity(0.5)]) }
-}
-
-class WelcomeModel: ObservableObject {
-    @Published var destination: Destination?
-    
-    func initateDestination(to destination: Destination) {
-        self.destination = destination
-    }
-    
-    @CasePathable
-    enum Destination {
-        case characters
-    }
 }

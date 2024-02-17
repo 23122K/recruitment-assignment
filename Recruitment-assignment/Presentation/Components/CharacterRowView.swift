@@ -11,7 +11,11 @@ import Shimmer
 struct CharacterRowView: View {
     @State private var value: Bool = false
     private let gradient = Gradient(colors: [Color.clear, Color.secondary.opacity(0.5)])
+    
     let character: Character
+    let favorite: [Character.ID]
+    
+    var onHeartTap: () -> Void
     
     var body: some View {
         HStack(alignment: .center) {
@@ -44,11 +48,28 @@ struct CharacterRowView: View {
             .padding(.horizontal)
                 
             Spacer()
+            
+            Image(systemName: favorite.contains(character.id) ? "heart.fill" : "heart")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 35, height: 35)
+                .foregroundStyle(Color.accentColor)
+                .padding()
+                .fontWeight(.light)
+                .onTapGesture { onHeartTap() }
+                .animation(.snappy, value: favorite.contains(character.id))
+            
         }
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.secondary)
         }
+    }
+    
+    init(character: Character, favorite characters: [Character.ID], _ onHeartTap: @escaping () -> Void) {
+        self.favorite = characters
+        self.character = character
+        self.onHeartTap = onHeartTap
     }
 }
 

@@ -20,16 +20,11 @@ struct SearchView: View {
         NavigationStack {
             VStack {
                 SearchBar($vm.phrase, focus: $focus, equals: .search, onSubmit: { focus = .none }, onCancel: {focus = .none})
-                
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(vm.filters) { filter in
-                            TagView(filter.description, selected: vm.filter)
-                                .onTapGesture { vm.initateUpdateFilters(for: filter) }
-                        }
-                        
-                    }
+                HorizontalCarousel(elements: vm.filters) { filter in
+                    TagView(filter.description, selected: vm.filter)
+                        .onTapGesture { vm.initateUpdateFilters(for: filter) }
                 }
+                
                 FiltersView(selected: $vm.filter) { filter in vm.initateUpdateFilters(for: filter) }
                 Spacer()
                 SearchListView(vm)

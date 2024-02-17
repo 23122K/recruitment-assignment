@@ -6,32 +6,27 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct CharacterHeaderView: View {
-    @State private var value: Bool = false
+    private let gradient = Gradient(colors: [Color.clear, Color.primary])
     
-    let gradient = Gradient(colors: [Color.clear, Color.primary])
     let character: Character
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             AsyncImage(url: character.image) { phase in
                 switch phase {
-                case .empty, .failure:
-                    Color.primary
-                        .frame(width: 400, height: 400)
-                        .onAppear { value.toggle() }
-                        .animation(.easeOut, value: value)
                 case let .success(image):
                     image
                         .resizable()
                         .scaledToFit()
                         .overlay(LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom))
-                        .onAppear { value.toggle() }
-                        .animation(.easeIn, value: value)
+                case .empty, .failure: Self.asyncImagePlaceholder()
+                @unknown default: Self.asyncImagePlaceholder()
                 }
             }
-            
+    
             Text(character.name)
                 .foregroundStyle(Color.font)
                 .fontWeight(.bold)
@@ -43,3 +38,15 @@ struct CharacterHeaderView: View {
     
     init(_ character: Character) { self.character = character }
 }
+
+extension CharacterHeaderView {
+    @ViewBuilder
+    static func asyncImagePlaceholder() -> some View {
+        Color.font
+        Color.primary
+            .frame(width: 400, height: 400)
+            .redacted(reason: .placeholder)
+            .shimmering()
+    }
+}
+

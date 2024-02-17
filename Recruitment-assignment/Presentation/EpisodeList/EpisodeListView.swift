@@ -13,13 +13,10 @@ struct EpisodeListView: View {
     
     var body: some View {
         AsyncView(state: $vm.episodes, placeholder: EpisodeListView.Placeholder()) { episodes in
-            ScrollView {
-                ForEach(episodes) { episode in
-                    EpisodeRowView(episode.name, number: episode.number, season: episode.season, image: Image(systemName: "movieclapper"))
-                        .onTapGesture { vm.initateDestination(to: .details(episode)) }
-                }
+            CustomList(episodes) { episode in
+                EpisodeRowView(episode.name, number: episode.number, season: episode.season, image: Image(systemName: "movieclapper"))
+                    .onTapGesture { vm.initateDestination(to: .details(episode)) }
             }
-            .scrollIndicators(.never)
         }
         .animation(.bouncy, value: vm.episodes.isLoaded)
         .navigationDestination(unwrapping: $vm.destination.details) { $episode in
@@ -30,7 +27,7 @@ struct EpisodeListView: View {
     }
     
     init(_ character: Character? = nil, loadable episodes: Loadable<[Episode]>? = nil) {
-        self._vm = ObservedObject(initialValue: EpisodeListModel(character: character, episodes: episodes))
+        self._vm = ObservedObject(wrappedValue: EpisodeListModel(character: character, episodes: episodes))
     }
 }
 

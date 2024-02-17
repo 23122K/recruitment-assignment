@@ -11,8 +11,8 @@ import SwiftUINavigation
 
 @MainActor
 class LocationDetailsModel: ObservableObject {
-    @Published var location: Loadable<Location> = .none
-    @Published var destination: Destination? = .none
+    @Published var location: Loadable<Location>
+    @Published var destination: Destination?
     
     @Injected(\.locationRemoteRepository) private var locationRemoteRepository
     
@@ -21,7 +21,7 @@ class LocationDetailsModel: ObservableObject {
         case characters(_ characters: [Character.ID])
     }
     
-    func initateGetLocationBy(location id: Location.ID) {
+    func initateGetLocation(location id: Location.ID) {
         Task(priority: .userInitiated) {
             do {
                 self.location = .loading
@@ -35,7 +35,10 @@ class LocationDetailsModel: ObservableObject {
         self.destination = destination
     }
     
-    init(location id: Location.ID) {
-        initateGetLocationBy(location: id)
+    init(location id: Location.ID, loadable location: Loadable<Location> = .none, destination: Destination? = .none) {
+        self.location = location
+        self.destination = destination
+        
+        self.initateGetLocation(location: id)
     }
 }

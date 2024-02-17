@@ -14,13 +14,12 @@ struct CharactersListView: View {
     var body: some View {
         VStack(spacing: 0) {
             AsyncView(state: $vm.characters, placeholder: CharactersListView.Placeholder()) { characters in
-                ScrollView {
-                    ForEach(characters) { character in
-                        CharacterRowView(character: character)
-                            .onTapGesture { vm.initiateDestination(to: .details(character)) }
+                CustomList(characters) { character in
+                    CharacterRowView(character: character, favorite: vm.favorite) {
+                        vm.initateToggleFavorite(for: character)
                     }
+                    .onTapGesture { vm.initiateDestination(to: .details(character)) }
                 }
-                .scrollIndicators(.never)
             }
         }
         .animation(.bouncy, value: vm.characters.isLoaded)

@@ -12,9 +12,12 @@ import SwiftUINavigation
 @MainActor
 class CharactersListModel: ObservableObject {
     @Published var characters: Loadable<[Character]>
+    @Published var favorite: [Character.ID]
     @Published var destination: Destination?
     
     @Injected(\.characterRemoteRepository) private var characterRemoteRepository
+    @Injected(\.favoriteCharacterStore) private var favoriteCharacterStore
+    @Injected(\.subscrptions) private var subscrptions
     
     @CasePathable
     enum Destination {
@@ -27,6 +30,17 @@ class CharactersListModel: ObservableObject {
     
     func initiateDiscardAllFetchedCharacters() {
         self.characters = .none
+    }
+    
+    func initateToggleFavorite(for character: Character) {
+        switch favorite.contains(character.id) {
+        case true: favoriteCharacterStore.delete(character)
+        case false: favoriteCharacterStore.add(character)
+        }
+    }
+    
+    func initateGetAllFavoritedCharacters() {
+        self.favorite = favoriteCharacterStore.get()
     }
     
     func initateGetAllCharacters() {
@@ -49,7 +63,13 @@ class CharactersListModel: ObservableObject {
         }
     }
     
-    init(character ids: [Character.ID]? = .none, loadable characters: Optional<Loadable<[Character]>> = nil, destination: Destination? = .none) {
+    init(
+        character ids: [Character.ID]? = .none,
+        loadable characters: Loadable<[Character]>? = nil,
+        favorite: [Character.ID] = [],
+        destination: Destination? = .none
+    ) {
+        self.favorite = favorite
         self.destination = destination
         
         switch ids {
@@ -65,5 +85,10 @@ class CharactersListModel: ObservableObject {
                 self.characters = characters
             }
         }
+        
+        self.favoriteCharacterStore.$didChange
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.initateGetAllFavoritedCharacters() }
+            .store(in: &subscrptions.cancelbag)
     }
 }

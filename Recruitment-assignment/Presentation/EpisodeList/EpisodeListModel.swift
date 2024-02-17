@@ -13,7 +13,7 @@ import SwiftUINavigation
 class EpisodeListModel: ObservableObject {
     @Published var character: Character?
     @Published var episodes: Loadable<[Episode]>
-    @Published var destination: Destination? = .none
+    @Published var destination: Destination?
     
     @Injected(\.episodeRemoteRepository) private var episodeRemoteRepository
     
@@ -22,7 +22,7 @@ class EpisodeListModel: ObservableObject {
         case details(_ episode: Episode)
     }
     
-    func initateGetAllEpisodesWithGivenCharacterAction() {
+    func initateGetAllEpisodesWithGivenCharacter() {
         guard let character else { return }
         
         Task(priority: .userInitiated) {
@@ -48,7 +48,9 @@ class EpisodeListModel: ObservableObject {
         self.destination = destination
     }
     
-    init(character: Character?, episodes: Loadable<[Episode]>? = Loadable<[Episode]>?.none) {
+    init(character: Character?, episodes: Loadable<[Episode]>? = Loadable<[Episode]>?.none, destination: Destination? = .none) {
+        self.destination = destination
+        
         switch episodes {
         case nil:
             self.episodes = .none
@@ -58,7 +60,7 @@ class EpisodeListModel: ObservableObject {
                 self.initateGetAllEpisodes()
             case let .some(character):
                 self.character = character
-                self.initateGetAllEpisodesWithGivenCharacterAction()
+                self.initateGetAllEpisodesWithGivenCharacter()
             }
         case let .some(episodes):
             self.episodes = episodes

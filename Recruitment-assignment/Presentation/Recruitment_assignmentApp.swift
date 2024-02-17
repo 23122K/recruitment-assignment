@@ -10,6 +10,27 @@ import SwiftUI
 @main
 struct Recruitment_assignmentApp: App {
     var body: some Scene {
-        WindowGroup { ContentView() }
+        WindowGroup {
+            TabView {
+                WelcomeView()
+                    .tabItem {
+                        Image(systemName: "person.2.fill")
+                        Text("Characters")
+                    }
+                
+                FavoriteView()
+                    .tabItem {
+                        Image(systemName: "heart.fill")
+                        Text("Favorite")
+                    }
+                
+                
+                SearchView()
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                        Text("Search")
+                    }
+            }
+        }
     }
 }

@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct FavoriteView: View {
+    @StateObject private var vm = FavoriteModel()
+    
     var body: some View {
-        CharactersListView.Placeholder()
+        NavigationStack {
+            CharactersListView(character: vm.characters)
+        }
     }
 }
 

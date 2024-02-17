@@ -38,7 +38,10 @@ struct CustomNavigationViewModifier: ViewModifier {
 }
 
 extension View {
-    func title(_ title: String) -> some View {
-        self.modifier(CustomNavigationViewModifier(title: title))
+    func title(_ title: String? = .none) -> some View {
+        switch title {
+        case .none: self.modifier(CustomNavigationViewModifier(title: "Back"))
+        case let .some(title): self.modifier(CustomNavigationViewModifier(title: title))
+        }
     }
 }

@@ -22,7 +22,6 @@ protocol Endpoint {
 }
 
 extension Endpoint {
-    //TODO: Introduce EndpointError enum that woud handle invalid URLs?
     var url: URL {
         var components = URLComponents()
         components.scheme = self.schema

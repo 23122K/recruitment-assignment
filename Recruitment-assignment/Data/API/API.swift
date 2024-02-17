@@ -34,7 +34,6 @@ extension API.Response {
     struct Info: Hashable, Decodable {
         let count: Int
         let pages: Int
-        let next: String?
     }
 }
 

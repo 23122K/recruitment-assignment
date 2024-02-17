@@ -12,7 +12,7 @@ import SwiftUINavigation
 @MainActor
 class LocationListModel: ObservableObject {
     @Published var locations: Loadable<[Location]>
-    @Published var destination: Destination? = .none
+    @Published var destination: Destination?
     
     @Injected(\.locationRemoteRepository) private var locationRemoteRepository
     

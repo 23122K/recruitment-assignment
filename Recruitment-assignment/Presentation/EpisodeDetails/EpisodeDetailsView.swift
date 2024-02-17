@@ -18,6 +18,7 @@ struct EpisodeDetailsView: View {
                 GenericRowView(vm.episode.aired, category: "First aired", image: Image(systemName: "antenna.radiowaves.left.and.right"))
                 HStack(spacing: 0) {
                     GenericRowView(vm.episode.number.description, category: "Episode no.", image: Image(systemName: "number"))
+                    Spacer()
                     GenericRowView(vm.episode.season.description, category: "Season", image: Image(systemName: "number"))
                 }
                 GenericRowView(vm.episode.characters.count.description, category: "Characters count", image: Image(systemName: "person.fill"), clickable: true)
@@ -33,6 +34,6 @@ struct EpisodeDetailsView: View {
     }
     
     init(_ episode: Episode) {
-        self._vm = ObservedObject(initialValue: EpisodeDetailsModel(episode: episode))
+        self._vm = ObservedObject(wrappedValue: EpisodeDetailsModel(episode: episode))
     }
 }

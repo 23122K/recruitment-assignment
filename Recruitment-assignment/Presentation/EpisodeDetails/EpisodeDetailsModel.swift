@@ -12,7 +12,7 @@ import SwiftUINavigation
 @MainActor
 class EpisodeDetailsModel: ObservableObject {
     @Published var episode: Episode
-    @Published var destination: Destination? = .none
+    @Published var destination: Destination?
     
     @Injected(\.characterRemoteRepository) private var characterRemoteRepository
     
@@ -25,5 +25,8 @@ class EpisodeDetailsModel: ObservableObject {
         self.destination = destination
     }
     
-    init(episode: Episode) { self.episode = episode }
+    init(episode: Episode, destination: Destination? = .none) {
+        self.episode = episode
+        self.destination = destination
+    }
 }
