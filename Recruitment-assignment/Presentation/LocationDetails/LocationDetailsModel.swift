@@ -17,18 +17,16 @@ class LocationDetailsModel: ObservableObject {
     @Injected(\.locationRemoteRepository) private var locationRemoteRepository
     
     @CasePathable
-    enum Destination {
+    enum Destination: Equatable {
         case characters(_ characters: [Character.ID])
     }
     
-    func initateGetLocation(location id: Location.ID) {
-        Task(priority: .userInitiated) {
-            do {
-                self.location = .loading
-                let result = try await locationRemoteRepository.getLocation(with: id)
-                self.location = .loaded(result)
-            } catch { self.location = .failed(error) }
-        }
+    func initateGetLocation(location id: Location.ID) async {
+        do {
+            self.location = .loading
+            let result = try await locationRemoteRepository.getLocation(with: id)
+            self.location = .loaded(result)
+        } catch { self.location = .failed(error) }
     }
     
     func initiadeDestination(to destination: Destination) {
@@ -39,6 +37,6 @@ class LocationDetailsModel: ObservableObject {
         self.location = location
         self.destination = destination
         
-        self.initateGetLocation(location: id)
+        Task { await self.initateGetLocation(location: id) }
     }
 }

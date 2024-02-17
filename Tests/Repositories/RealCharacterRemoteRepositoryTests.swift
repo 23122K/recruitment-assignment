@@ -47,8 +47,5 @@ final class RealCharacterRemoteRepositoryTests: XCTestCase {
         
         //Act
         MockURLProtocol.add(response: _mocked)
-        
-        //Assert
-        
     }
 }

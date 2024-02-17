@@ -16,7 +16,7 @@ class WelcomeModel: ObservableObject {
     }
     
     @CasePathable
-    enum Destination {
+    enum Destination: Equatable {
         case characters
     }
     

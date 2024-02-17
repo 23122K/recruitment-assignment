@@ -17,18 +17,8 @@ class LocationListModel: ObservableObject {
     @Injected(\.locationRemoteRepository) private var locationRemoteRepository
     
     @CasePathable
-    enum Destination {
+    enum Destination: Equatable {
         case details(_ location: Location)
-    }
-    
-    func initateGetAllLocations() {
-        Task(priority: .userInitiated) {
-            do {
-                self.locations = .loading
-                let result = try await locationRemoteRepository.getAll().results
-                self.locations = .loaded(result)
-            } catch { self.locations = .failed(error) }
-        }
     }
     
     func initateDestination(to destination: Destination) {

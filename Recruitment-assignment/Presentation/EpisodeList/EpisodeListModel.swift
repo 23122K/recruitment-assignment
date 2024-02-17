@@ -18,30 +18,26 @@ class EpisodeListModel: ObservableObject {
     @Injected(\.episodeRemoteRepository) private var episodeRemoteRepository
     
     @CasePathable
-    enum Destination {
+    enum Destination: Equatable {
         case details(_ episode: Episode)
     }
     
-    func initateGetAllEpisodesWithGivenCharacter() {
+    func initateGetAllEpisodesWithGivenCharacter() async {
         guard let character else { return }
         
-        Task(priority: .userInitiated) {
-            do {
-                self.episodes = .loading
-                let result = try await episodeRemoteRepository.getEpisodes(with: character.episodes)
-                self.episodes = .loaded(result)
-            } catch { self.episodes = .failed(error) }
-        }
+        do {
+            self.episodes = .loading
+            let result = try await episodeRemoteRepository.getEpisodes(with: character.episodes)
+            self.episodes = .loaded(result)
+        } catch { self.episodes = .failed(error) }
     }
     
-    func initateGetAllEpisodes() {
-        Task(priority: .userInitiated) {
-            do {
-                self.episodes = .loading
-                let result = try await episodeRemoteRepository.getAll().results
-                self.episodes = .loaded(result)
-            } catch { self.episodes = .failed(error) }
-        }
+    func initateGetAllEpisodes() async {
+        do {
+            self.episodes = .loading
+            let result = try await episodeRemoteRepository.getAll().results
+            self.episodes = .loaded(result)
+        } catch { self.episodes = .failed(error) }
     }
     
     func initateDestination(to destination: Destination) {
@@ -57,10 +53,10 @@ class EpisodeListModel: ObservableObject {
             switch character {
             case .none:
                 self.character = .none
-                self.initateGetAllEpisodes()
+                Task { await self.initateGetAllEpisodes() }
             case let .some(character):
                 self.character = character
-                self.initateGetAllEpisodesWithGivenCharacter()
+                Task { await self.initateGetAllEpisodesWithGivenCharacter() }
             }
         case let .some(episodes):
             self.episodes = episodes

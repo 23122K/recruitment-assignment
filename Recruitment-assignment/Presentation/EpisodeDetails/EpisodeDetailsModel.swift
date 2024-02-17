@@ -17,7 +17,7 @@ class EpisodeDetailsModel: ObservableObject {
     @Injected(\.characterRemoteRepository) private var characterRemoteRepository
     
     @CasePathable
-    enum Destination {
+    enum Destination: Equatable {
         case characters(_ characters: [Character.ID])
     }
     

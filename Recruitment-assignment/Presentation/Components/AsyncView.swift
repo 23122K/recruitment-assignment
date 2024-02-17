@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AsyncView<T: Any, Content: View, Placeholder: View>: View {
+struct AsyncView<T: Equatable, Content: View, Placeholder: View>: View {
     @Binding var state: Loadable<T>
     var placeholder: Placeholder
     var content: (T) -> Content

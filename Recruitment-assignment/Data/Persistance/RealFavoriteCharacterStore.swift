@@ -15,7 +15,6 @@ class FavoriteCharacterStore: ObservableObject, UserDefaultsStore {
     @Published private(set) var didChange: Bool
     
     func add(_ character: Character) {
-        print("Add character \(character)")
         defer { didChange.toggle() }
         
         var characters: Set<Character.ID> = Set(self.get())
@@ -24,7 +23,6 @@ class FavoriteCharacterStore: ObservableObject, UserDefaultsStore {
     }
     
     func delete(_ character: Character) {
-        print("Delete character \(character)")
         defer { didChange.toggle() }
         
         var characters: Set<Character.ID> = Set(self.get())
@@ -34,7 +32,6 @@ class FavoriteCharacterStore: ObservableObject, UserDefaultsStore {
     
     func get() -> [Character.ID] {
         guard let ids = defaults.array(forKey: Keys.favoriteCharactersStoreKey) as? [Int] else { return [] }
-        print("Get")
         return ids
     }
     

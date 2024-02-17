@@ -29,6 +29,12 @@
 		6F1839062B80C0D200F27A59 /* MockLocationRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1839052B80C0D200F27A59 /* MockLocationRemoteRepository.swift */; };
 		6F1839082B80C11A00F27A59 /* Location+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1839072B80C11A00F27A59 /* Location+Extension.swift */; };
 		6F18390A2B80C12600F27A59 /* Episode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1839092B80C12600F27A59 /* Episode+Extension.swift */; };
+		6F18390E2B80EC7F00F27A59 /* SearchModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18390D2B80EC7F00F27A59 /* SearchModelTests.swift */; };
+		6F1839122B81014900F27A59 /* WelcomeModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1839112B81014900F27A59 /* WelcomeModelTests.swift */; };
+		6F1839142B81016200F27A59 /* LocationListModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1839132B81016200F27A59 /* LocationListModelTests.swift */; };
+		6F1839162B81017600F27A59 /* EpisodeListModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1839152B81017600F27A59 /* EpisodeListModelTests.swift */; };
+		6F1839182B8101A900F27A59 /* LocationDetailsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1839172B8101A900F27A59 /* LocationDetailsModelTests.swift */; };
+		6F18391A2B8101BF00F27A59 /* EpisodeDetailsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1839192B8101BF00F27A59 /* EpisodeDetailsModelTests.swift */; };
 		6FADB1F22B7E56BD00DCB57D /* Recruitment_assignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB1F12B7E56BD00DCB57D /* Recruitment_assignmentApp.swift */; };
 		6FADB1F62B7E56BD00DCB57D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FADB1F52B7E56BD00DCB57D /* Assets.xcassets */; };
 		6FADB1F92B7E56BD00DCB57D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FADB1F82B7E56BD00DCB57D /* Preview Assets.xcassets */; };
@@ -90,7 +96,7 @@
 		6FADB2A12B803C2D00DCB57D /* CustomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2A02B803C2D00DCB57D /* CustomList.swift */; };
 		6FADB2A32B803E0200DCB57D /* WelcomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2A22B803E0200DCB57D /* WelcomeModel.swift */; };
 		6FADB2A52B80449900DCB57D /* CharactersDetailsSelectedTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2A42B80449900DCB57D /* CharactersDetailsSelectedTabView.swift */; };
-		6FADB2A82B8048D800DCB57D /* FavoriteCharacterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2A72B8048D800DCB57D /* FavoriteCharacterStore.swift */; };
+		6FADB2A82B8048D800DCB57D /* RealFavoriteCharacterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2A72B8048D800DCB57D /* RealFavoriteCharacterStore.swift */; };
 		6FADB2AD2B80576700DCB57D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2AC2B80576700DCB57D /* Subscriptions.swift */; };
 		6FADB2AF2B805F7700DCB57D /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2AE2B805F7700DCB57D /* UserDefaultsStore.swift */; };
 		6FADB2B12B80600200DCB57D /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB2B02B80600200DCB57D /* FavoriteModel.swift */; };
@@ -132,6 +138,12 @@
 		6F1839052B80C0D200F27A59 /* MockLocationRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationRemoteRepository.swift; sourceTree = "<group>"; };
 		6F1839072B80C11A00F27A59 /* Location+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+Extension.swift"; sourceTree = "<group>"; };
 		6F1839092B80C12600F27A59 /* Episode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Episode+Extension.swift"; sourceTree = "<group>"; };
+		6F18390D2B80EC7F00F27A59 /* SearchModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelTests.swift; sourceTree = "<group>"; };
+		6F1839112B81014900F27A59 /* WelcomeModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeModelTests.swift; sourceTree = "<group>"; };
+		6F1839132B81016200F27A59 /* LocationListModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListModelTests.swift; sourceTree = "<group>"; };
+		6F1839152B81017600F27A59 /* EpisodeListModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListModelTests.swift; sourceTree = "<group>"; };
+		6F1839172B8101A900F27A59 /* LocationDetailsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsModelTests.swift; sourceTree = "<group>"; };
+		6F1839192B8101BF00F27A59 /* EpisodeDetailsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsModelTests.swift; sourceTree = "<group>"; };
 		6FADB1EE2B7E56BD00DCB57D /* Recruitment-assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recruitment-assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FADB1F12B7E56BD00DCB57D /* Recruitment_assignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recruitment_assignmentApp.swift; sourceTree = "<group>"; };
 		6FADB1F52B7E56BD00DCB57D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -190,7 +202,7 @@
 		6FADB2A02B803C2D00DCB57D /* CustomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomList.swift; sourceTree = "<group>"; };
 		6FADB2A22B803E0200DCB57D /* WelcomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeModel.swift; sourceTree = "<group>"; };
 		6FADB2A42B80449900DCB57D /* CharactersDetailsSelectedTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersDetailsSelectedTabView.swift; sourceTree = "<group>"; };
-		6FADB2A72B8048D800DCB57D /* FavoriteCharacterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCharacterStore.swift; sourceTree = "<group>"; };
+		6FADB2A72B8048D800DCB57D /* RealFavoriteCharacterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealFavoriteCharacterStore.swift; sourceTree = "<group>"; };
 		6FADB2AC2B80576700DCB57D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
 		6FADB2AE2B805F7700DCB57D /* UserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStore.swift; sourceTree = "<group>"; };
 		6FADB2B02B80600200DCB57D /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
@@ -297,6 +309,12 @@
 			isa = PBXGroup;
 			children = (
 				6F1838FA2B80B3DE00F27A59 /* CharacterListModelTests.swift */,
+				6F18390D2B80EC7F00F27A59 /* SearchModelTests.swift */,
+				6F1839112B81014900F27A59 /* WelcomeModelTests.swift */,
+				6F1839132B81016200F27A59 /* LocationListModelTests.swift */,
+				6F1839152B81017600F27A59 /* EpisodeListModelTests.swift */,
+				6F1839172B8101A900F27A59 /* LocationDetailsModelTests.swift */,
+				6F1839192B8101BF00F27A59 /* EpisodeDetailsModelTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -563,7 +581,7 @@
 		6FADB2A62B8048BD00DCB57D /* Persistance */ = {
 			isa = PBXGroup;
 			children = (
-				6FADB2A72B8048D800DCB57D /* FavoriteCharacterStore.swift */,
+				6FADB2A72B8048D800DCB57D /* RealFavoriteCharacterStore.swift */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -689,8 +707,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F1839162B81017600F27A59 /* EpisodeListModelTests.swift in Sources */,
 				6F1838D82B80841700F27A59 /* URLSession+Extension.swift in Sources */,
 				6F1838F62B809DFF00F27A59 /* Character+Extension.swift in Sources */,
+				6F18391A2B8101BF00F27A59 /* EpisodeDetailsModelTests.swift in Sources */,
 				6F1839002B80BB3A00F27A59 /* API+Extension.swift in Sources */,
 				6F1839082B80C11A00F27A59 /* Location+Extension.swift in Sources */,
 				6F1838E42B808AB600F27A59 /* MockStoreTests.swift in Sources */,
@@ -698,14 +718,18 @@
 				6F1838FB2B80B3DE00F27A59 /* CharacterListModelTests.swift in Sources */,
 				6F1838DA2B80850300F27A59 /* MockEndpoint.swift in Sources */,
 				6F1838DC2B80873900F27A59 /* MockUserDefaultsStore.swift in Sources */,
+				6F18390E2B80EC7F00F27A59 /* SearchModelTests.swift in Sources */,
 				6F1838D22B8077F200F27A59 /* String+ExtensionTests.swift in Sources */,
 				6F1838F22B8099D800F27A59 /* RealCharacterRemoteRepositoryTests.swift in Sources */,
+				6F1839182B8101A900F27A59 /* LocationDetailsModelTests.swift in Sources */,
 				6F1838D62B8083C700F27A59 /* URLProtocolMock.swift in Sources */,
 				6F1838FE2B80BAE700F27A59 /* MockCharacterRemoteRepository.swift in Sources */,
 				6F1839062B80C0D200F27A59 /* MockLocationRemoteRepository.swift in Sources */,
 				6F1838E02B80891500F27A59 /* UserDefaults+Extension.swift in Sources */,
 				6F1838D42B807ECC00F27A59 /* Data+ExtensionTests.swift in Sources */,
+				6F1839122B81014900F27A59 /* WelcomeModelTests.swift in Sources */,
 				6F1839022B80BE2A00F27A59 /* Container+Extension.swift in Sources */,
+				6F1839142B81016200F27A59 /* LocationListModelTests.swift in Sources */,
 				6F18390A2B80C12600F27A59 /* Episode+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -763,7 +787,7 @@
 				6FADB24B2B7ECAC200DCB57D /* Loadable.swift in Sources */,
 				6FADB2602B7EF67600DCB57D /* EpisodeListView.swift in Sources */,
 				6FADB1F22B7E56BD00DCB57D /* Recruitment_assignmentApp.swift in Sources */,
-				6FADB2A82B8048D800DCB57D /* FavoriteCharacterStore.swift in Sources */,
+				6FADB2A82B8048D800DCB57D /* RealFavoriteCharacterStore.swift in Sources */,
 				6FADB21E2B7E5E7000DCB57D /* Episode.swift in Sources */,
 				6FADB2302B7E710800DCB57D /* EpisodeEndpoint.swift in Sources */,
 				6FADB2292B7E686E00DCB57D /* CharacterEndpoint.swift in Sources */,
