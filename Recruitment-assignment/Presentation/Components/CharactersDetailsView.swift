@@ -19,10 +19,8 @@ struct CharactersDetailsView: View {
             TabView(selection: $selection) {
                 CharacterInfoView(character)
                     .tag(Tab.details)
-                    .padding(.horizontal, 5)
                 EpisodeListView(character)
                     .tag(Tab.episodes)
-                    .padding(.horizontal, 5)
             }
             .animation(.bouncy, value: selection)
             .ignoresSafeArea(.all)

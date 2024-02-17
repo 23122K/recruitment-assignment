@@ -22,7 +22,7 @@ struct CharactersDetailsSelectedTabView: View {
                 .onTapGesture { selection = .episodes }
         }
         .padding(.horizontal, 5)
-        .padding(.bottom, 8)
+        .padding(.bottom, 3)
         .animation(.spring, value: selection)
     }
 }

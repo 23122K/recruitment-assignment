@@ -26,6 +26,7 @@ struct EpisodeDetailsView: View {
             }
             .scrollIndicators(.never)
         }
+        .padding(5)
         .navigationDestination(unwrapping: $vm.destination.characters) { $characters in
             CharactersListView(character: characters)
                 .title(vm.episode.name)
