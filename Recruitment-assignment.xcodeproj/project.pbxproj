@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F1838BD2B80735300F27A59 /* SampleCode.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6F1838BC2B80735300F27A59 /* SampleCode.xcconfig */; };
 		6FADB1F22B7E56BD00DCB57D /* Recruitment_assignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB1F12B7E56BD00DCB57D /* Recruitment_assignmentApp.swift */; };
 		6FADB1F62B7E56BD00DCB57D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FADB1F52B7E56BD00DCB57D /* Assets.xcassets */; };
 		6FADB1F92B7E56BD00DCB57D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FADB1F82B7E56BD00DCB57D /* Preview Assets.xcassets */; };
@@ -76,6 +77,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F1838BC2B80735300F27A59 /* SampleCode.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SampleCode.xcconfig; sourceTree = "<group>"; };
+		6F1838BE2B80735D00F27A59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FADB1EE2B7E56BD00DCB57D /* Recruitment-assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recruitment-assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FADB1F12B7E56BD00DCB57D /* Recruitment_assignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recruitment_assignmentApp.swift; sourceTree = "<group>"; };
 		6FADB1F52B7E56BD00DCB57D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,6 +159,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F1838BB2B80732B00F27A59 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				6F1838BE2B80735D00F27A59 /* Info.plist */,
+				6F1838BC2B80735300F27A59 /* SampleCode.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		6FADB1E52B7E56BC00DCB57D = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +187,7 @@
 		6FADB1F02B7E56BD00DCB57D /* Recruitment-assignment */ = {
 			isa = PBXGroup;
 			children = (
+				6F1838BB2B80732B00F27A59 /* Configuration */,
 				6FADB2032B7E56FA00DCB57D /* Data */,
 				6FADB2002B7E56D000DCB57D /* Domain */,
 				6FADB2012B7E56D400DCB57D /* Presentation */,
@@ -495,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FADB1F92B7E56BD00DCB57D /* Preview Assets.xcassets in Resources */,
+				6F1838BD2B80735300F27A59 /* SampleCode.xcconfig in Resources */,
 				6FADB1F62B7E56BD00DCB57D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,14 +713,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Recruitment-assignment/Resources/Preview Content\"";
-				DEVELOPMENT_TEAM = V9R36M3H42;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Recruitment-assignment/Configuration/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rick'n Morty";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -714,9 +731,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "mcig.Recruitment-assignment";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -728,14 +748,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Recruitment-assignment/Resources/Preview Content\"";
-				DEVELOPMENT_TEAM = V9R36M3H42;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Recruitment-assignment/Configuration/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rick'n Morty";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -743,9 +766,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "mcig.Recruitment-assignment";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
